@@ -1,0 +1,83 @@
+{
+  "name": "paymaster",
+  "productName": "PayMaster",
+  "version": "1.0.0",
+  "description": "Professional Payroll Management System for Small to Medium Businesses",
+  "main": "main.js",
+  "homepage": "https://paymaster.com",
+  "author": {
+    "name": "PayMaster Team",
+    "email": "info@paymaster.com",
+    "url": "https://paymaster.com"
+  },
+  "license": "Commercial",
+  "scripts": {
+    "start": "electron .",
+    "dev": "NODE_ENV=development electron .",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win",
+    "build-mac": "electron-builder --mac",
+    "build-linux": "electron-builder --linux",
+    "dist": "npm run build",
+    "pack": "electron-builder --dir",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "payroll",
+    "employee",
+    "payment",
+    "receipts",
+    "business",
+    "hr",
+    "salary",
+    "management"
+  ],
+  "build": {
+    "appId": "com.paymaster.app",
+    "productName": "PayMaster",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "verifyUpdateCodeSignature": false,
+      "signAndEditExecutable": false,
+      "forceCodeSigning": false
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "assets/icon.icns",
+      "category": "public.app-category.business"
+    },
+    "linux": {
+      "target": [
+        {
+          "target": "AppImage",
+          "arch": ["x64"]
+        },
+        {
+          "target": "deb",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.png",
+      "category": "Office"
+    },
+    "publish": null
+  },
+  "devDependencies": {
+    "electron": "^37.2.0",
+    "electron-builder": "^26.0.12"
+  }
+}

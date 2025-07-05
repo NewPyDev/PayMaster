@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thank You - PayMaster Purchase Successful</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #2c3e50;
+        }
+        
+        .success-container {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 600px;
+            margin: 2rem;
+        }
+        
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #28a745, #20c997);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            animation: checkmark 0.6s ease-in-out;
+        }
+        
+        .success-icon i {
+            color: white;
+            font-size: 2.5rem;
+        }
+        
+        @keyframes checkmark {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #6c757d;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .download-section {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 12px;
+            margin: 2rem 0;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 1rem;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .download-info {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 1rem;
+        }
+        
+        .next-steps {
+            text-align: left;
+            margin: 2rem 0;
+        }
+        
+        .next-steps h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+        
+        .step-number {
+            width: 30px;
+            height: 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-content p {
+            color: #6c757d;
+            line-height: 1.5;
+        }
+        
+        .support-section {
+            background: #e8f4fd;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin: 2rem 0;
+        }
+        
+        .support-section h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+        
+        .support-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .support-info i {
+            color: #667eea;
+            width: 20px;
+        }
+        
+        .footer-links {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e9ecef;
+        }
+        
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .success-container {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .download-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="success-container">
+        <div class="success-icon">
+            <i class="fas fa-check"></i>
+        </div>
+        
+        <h1>Payment Successful!</h1>
+        <p class="subtitle">
+            Thank you for purchasing PayMaster Professional! Your payment has been processed successfully,
+            and you now have lifetime access to the complete payroll management solution.
+        </p>
+        
+        <div class="download-section">
+            <h3>Download PayMaster Now</h3>
+            <a href="../dist/PayMaster 1.0.0.exe" class="download-btn" download>
+                <i class="fas fa-download"></i>
+                Download PayMaster 1.0.0.exe
+            </a>
+            <div class="download-info">
+                <i class="fas fa-info-circle"></i>
+                File size: ~76 MB | Compatible with Windows 10+
+            </div>
+        </div>
+        
+        <div class="next-steps">
+            <h3>What's Next?</h3>
+            
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Install PayMaster</h4>
+                    <p>Run the downloaded file and follow the installation wizard. PayMaster will be ready to use in under 2 minutes.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Set Up Your Company</h4>
+                    <p>Open PayMaster and configure your company name, currency, and date format in Settings.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>Add Your First Employee</h4>
+                    <p>Click "Add Employee" and enter their details. You can add unlimited employees with your license.</p>
+                </div>
+            </div>
+            
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h4>Start Managing Payroll</h4>
+                    <p>Add payment adjustments, generate professional receipts, and save hours every month!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="support-section">
+            <h3><i class="fas fa-headset"></i> Need Help?</h3>
+            <div class="support-info">
+                <i class="fas fa-envelope"></i>
+                <span>Email: <strong>support@paymaster.com</strong></span>
+            </div>
+            <div class="support-info">
+                <i class="fas fa-clock"></i>
+                <span>Response time: <strong>Within 24 hours</strong></span>
+            </div>
+            <div class="support-info">
+                <i class="fas fa-shield-alt"></i>
+                <span><strong>30-day money-back guarantee</strong> if you're not satisfied</span>
+            </div>
+        </div>
+        
+        <div class="footer-links">
+            <a href="../src/docs/User_Manual.md">User Manual</a>
+            <a href="mailto:support@paymaster.com">Contact Support</a>
+            <a href="../src/docs/LICENSE.md">License Agreement</a>
+        </div>
+    </div>
+
+    <script>
+        // Track successful purchase
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'purchase', {
+                transaction_id: new Date().getTime(),
+                value: 149,
+                currency: 'USD',
+                items: [{
+                    item_id: 'paymaster-professional',
+                    item_name: 'PayMaster Professional',
+                    category: 'Software',
+                    quantity: 1,
+                    price: 149
+                }]
+            });
+        }
+        
+        // Track page view
+        console.log('Purchase completed successfully');
+        
+        // Optional: Auto-start download after a few seconds
+        setTimeout(() => {
+            const downloadBtn = document.querySelector('.download-btn');
+            if (downloadBtn && confirm('Would you like to automatically download PayMaster now?')) {
+                downloadBtn.click();
+            }
+        }, 3000);
+    </script>
+</body>
+</html>

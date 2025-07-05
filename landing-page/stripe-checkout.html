@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayMaster - Stripe Checkout Integration</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <!-- This is an example of advanced Stripe integration -->
+    <!-- You would replace the purchase buttons in your main landing page with this approach -->
+    
+    <script>
+        // Initialize Stripe
+        const stripe = Stripe('pk_test_your_publishable_key_here'); // Replace with your publishable key
+        
+        // Advanced purchase function with Stripe Checkout
+        function purchaseWithStripeCheckout() {
+            // Track the purchase attempt
+            trackEvent('checkout_initiated', {
+                product: 'PayMaster Professional',
+                price: 149,
+                currency: 'USD'
+            });
+            
+            stripe.redirectToCheckout({
+                lineItems: [{
+                    price: 'price_your_price_id_here', // Replace with your Price ID from Stripe
+                    quantity: 1,
+                }],
+                mode: 'payment',
+                successUrl: window.location.origin + '/success.html',
+                cancelUrl: window.location.origin + '/landing-page/index.html',
+                customerEmail: '', // Optional: pre-fill if you have it
+                metadata: {
+                    product: 'PayMaster Professional',
+                    version: '1.0.0'
+                }
+            }).then(function (result) {
+                if (result.error) {
+                    // Show error to customer
+                    alert(result.error.message);
+                    trackEvent('checkout_error', {
+                        error: result.error.message
+                    });
+                }
+            });
+        }
+        
+        // Function to handle one-click purchase
+        function oneClickPurchase() {
+            // Show loading state
+            const button = event.target;
+            const originalText = button.innerHTML;
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
+            button.disabled = true;
+            
+            // Call Stripe Checkout
+            purchaseWithStripeCheckout();
+            
+            // Reset button after a short delay
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }, 2000);
+        }
+        
+        // Alternative: Create a checkout session via your backend
+        function purchaseViaBackend() {
+            fetch('/create-checkout-session', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    product: 'paymaster-professional',
+                    quantity: 1
+                })
+            })
+            .then(response => response.json())
+            .then(session => {
+                return stripe.redirectToCheckout({ sessionId: session.id });
+            })
+            .then(result => {
+                if (result.error) {
+                    alert(result.error.message);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            });
+        }
+    </script>
+</body>
+</html>

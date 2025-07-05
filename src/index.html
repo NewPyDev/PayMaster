@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayMaster - Employee Payment Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <h1 class="app-title">
+                    <i class="fas fa-money-check-alt"></i>
+                    PayMaster
+                </h1>
+                <div class="header-actions">
+                    <button class="btn btn-secondary" onclick="showSettings()">
+                        <i class="fas fa-cog"></i> Settings
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Dashboard View -->
+            <div id="dashboard-view" class="view active">
+                <div class="dashboard-header">
+                    <div class="dashboard-actions">
+                        <button class="btn btn-primary" onclick="showAddEmployeeModal()" data-tooltip="Add a new employee to your payroll">
+                            <i class="fas fa-plus"></i> Add Employee
+                        </button>
+                        <button class="btn btn-secondary" onclick="showReportsView()" data-tooltip="View detailed reports and analytics">
+                            <i class="fas fa-chart-bar"></i> Reports
+                        </button>
+                        <button class="btn btn-secondary" onclick="printBatchReceipts()" data-tooltip="Print receipts for all employees at once">
+                            <i class="fas fa-print"></i> Print Batch
+                        </button>
+                    </div>
+                    <div class="search-container">
+                        <input type="text" id="employee-search" placeholder="Search employees..." onkeyup="searchEmployees()">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                </div>
+
+                <div class="employees-table-container">
+                    <table class="employees-table">
+                        <thead>
+                            <tr>
+                                <th>Employee Name</th>
+                                <th>Position</th>
+                                <th>Base Salary</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="employees-table-body">
+                            <!-- Employee rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="no-employees" class="no-data" style="display: none;">
+                    <i class="fas fa-users"></i>
+                    <h3>No employees found</h3>
+                    <p>Click "Add Employee" to get started</p>
+                </div>
+            </div>
+
+            <!-- Employee Payment View -->
+            <div id="employee-view" class="view">
+                <div class="employee-header">
+                    <button class="btn btn-ghost" onclick="showDashboard()">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </button>
+                    <h2 id="employee-title">Employee Payment Manager</h2>
+                    <button class="btn btn-warning" onclick="editCurrentEmployee()" data-tooltip="Edit employee information">
+                        <i class="fas fa-edit"></i> Edit Employee
+                    </button>
+                </div>
+
+                <div class="employee-content">
+                    <div class="employee-info-card">
+                        <h3>Employee Information</h3>
+                        <div class="info-grid">
+                            <div class="info-item">
+                                <label>Name:</label>
+                                <span id="emp-name"></span>
+                            </div>
+                            <div class="info-item">
+                                <label>Position:</label>
+                                <span id="emp-position"></span>
+                            </div>
+                            <div class="info-item">
+                                <label>Base Salary:</label>
+                                <span id="emp-base-salary" class="salary-amount"></span>
+                            </div>
+                            <div class="info-item">
+                                <label>Insurance:</label>
+                                <span id="emp-insurance" class="insurance-amount"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="payment-adjustments-card">
+                        <h3>Payment Adjustments</h3>
+                        <div class="adjustments-table-container">
+                            <table class="adjustments-table">
+                                <thead>
+                                    <tr>
+                                        <th>Description</th>
+                                        <th>Amount</th>
+                                        <th>Type</th>
+                                        <th>Frequency</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adjustments-table-body">
+                                    <!-- Adjustments will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <button class="btn btn-primary" onclick="showAddAdjustmentModal()">
+                            <i class="fas fa-plus"></i> Add New Entry
+                        </button>
+                    </div>
+
+                    <div class="payment-summary-card">
+                        <div class="summary-row">
+                            <span>Base Salary:</span>
+                            <span id="summary-base-salary" class="amount"></span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Insurance:</span>
+                            <span id="summary-insurance" class="amount negative"></span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Total Adjustments:</span>
+                            <span id="summary-adjustments" class="amount"></span>
+                        </div>
+                        <div class="summary-row final-amount">
+                            <span>Final Amount:</span>
+                            <span id="summary-final-amount" class="amount"></span>
+                        </div>
+                        <div class="payment-actions">
+                            <button class="btn btn-primary" onclick="generateReceipt()" data-tooltip="Generate a professional payment receipt">
+                                <i class="fas fa-file-invoice-dollar"></i> Generate Receipt
+                            </button>
+                            <button class="btn btn-secondary" onclick="printReceipt()" data-tooltip="Generate and immediately print receipt">
+                                <i class="fas fa-print"></i> Print Receipt
+                            </button>
+                            <button class="btn btn-secondary" onclick="showPaymentHistory()" data-tooltip="View all previous payments for this employee">
+                                <i class="fas fa-history"></i> Payment History
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports View -->
+            <div id="reports-view" class="view">
+                <div class="reports-header">
+                    <button class="btn btn-ghost" onclick="showDashboard()">
+                        <i class="fas fa-arrow-left"></i> Back to Dashboard
+                    </button>
+                    <h2>Reports & Analytics</h2>
+                </div>
+
+                <div class="reports-content">
+                    <!-- Summary Cards -->
+                    <div class="summary-cards-grid">
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3 id="total-employees">0</h3>
+                                <p>Total Employees</p>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3 id="total-payroll">$0.00</h3>
+                                <p>Total Payroll</p>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-receipt"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3 id="total-receipts">0</h3>
+                                <p>Receipts Generated</p>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="summary-info">
+                                <h3 id="avg-salary">$0.00</h3>
+                                <p>Average Salary</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reports Section -->
+                    <div class="reports-section">
+                        <div class="reports-actions">
+                            <h3>Generate Reports</h3>
+                            <div class="report-buttons">
+                                <button class="btn btn-primary" onclick="generatePayrollReport()">
+                                    <i class="fas fa-file-alt"></i> Payroll Summary
+                                </button>
+                                <button class="btn btn-secondary" onclick="generateEmployeeReport()">
+                                    <i class="fas fa-users"></i> Employee List
+                                </button>
+                                <button class="btn btn-secondary" onclick="generateAdjustmentsReport()">
+                                    <i class="fas fa-edit"></i> Adjustments Report
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Export Section -->
+                        <div class="export-section">
+                            <h3>Export Data</h3>
+                            <div class="export-buttons">
+                                <button class="btn btn-success" onclick="exportToCSV('employees')">
+                                    <i class="fas fa-file-csv"></i> Export Employees (CSV)
+                                </button>
+                                <button class="btn btn-success" onclick="exportToCSV('payments')">
+                                    <i class="fas fa-file-csv"></i> Export Payments (CSV)
+                                </button>
+                                <button class="btn btn-success" onclick="exportToCSV('adjustments')">
+                                    <i class="fas fa-file-csv"></i> Export Adjustments (CSV)
+                                </button>
+                                <button class="btn btn-info" onclick="backupData()">
+                                    <i class="fas fa-download"></i> Backup All Data
+                                </button>
+                                <button class="btn btn-warning" onclick="showRestoreModal()">
+                                    <i class="fas fa-upload"></i> Restore Data
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Analytics Tables -->
+                        <div class="analytics-tables">
+                            <!-- Employee Analytics -->
+                            <div class="analytics-card">
+                                <h4>Employee Salary Analysis</h4>
+                                <div class="table-container">
+                                    <table class="analytics-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Employee</th>
+                                                <th>Base Salary</th>
+                                                <th>Total Adjustments</th>
+                                                <th>Net Salary</th>
+                                                <th>Last Payment</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="employee-analytics-body">
+                                            <!-- Analytics data will be populated here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Adjustments Analytics -->
+                            <div class="analytics-card">
+                                <h4>Adjustment Types Summary</h4>
+                                <div class="table-container">
+                                    <table class="analytics-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Type</th>
+                                                <th>Count</th>
+                                                <th>Total Amount</th>
+                                                <th>Average Amount</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="adjustments-analytics-body">
+                                            <!-- Analytics data will be populated here -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Modals -->
+        <!-- Add Employee Modal -->
+        <div id="add-employee-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add New Employee</h3>
+                    <button class="modal-close" onclick="closeModal('add-employee-modal')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="add-employee-form" onsubmit="addEmployee(event)">
+                    <div class="form-group">
+                        <label for="emp-name-input">Employee Name *</label>
+                        <input type="text" id="emp-name-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-position-input">Position</label>
+                        <input type="text" id="emp-position-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-salary-input">Base Salary *</label>
+                        <input type="number" id="emp-salary-input" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-insurance-input">Insurance Amount *</label>
+                        <input type="number" id="emp-insurance-input" step="0.01" min="0" value="0" required>
+                        <small class="form-help">Monthly insurance deduction from salary</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="emp-hire-date-input">Hire Date</label>
+                        <input type="date" id="emp-hire-date-input">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('add-employee-modal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Employee</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Edit Employee Modal -->
+        <div id="edit-employee-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Edit Employee</h3>
+                    <button class="modal-close" onclick="closeModal('edit-employee-modal')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="edit-employee-form" onsubmit="updateEmployee(event)">
+                    <div class="form-group">
+                        <label for="edit-emp-name-input">Employee Name *</label>
+                        <input type="text" id="edit-emp-name-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-emp-position-input">Position</label>
+                        <input type="text" id="edit-emp-position-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-emp-salary-input">Base Salary *</label>
+                        <input type="number" id="edit-emp-salary-input" step="0.01" min="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-emp-insurance-input">Insurance Amount *</label>
+                        <input type="number" id="edit-emp-insurance-input" step="0.01" min="0" required>
+                        <small class="form-help">Monthly insurance deduction from salary</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-emp-hire-date-input">Hire Date</label>
+                        <input type="date" id="edit-emp-hire-date-input">
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('edit-employee-modal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Update Employee</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Add Adjustment Modal -->
+        <div id="add-adjustment-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Add Payment Adjustment</h3>
+                    <button class="modal-close" onclick="closeModal('add-adjustment-modal')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="add-adjustment-form" onsubmit="addAdjustment(event)">
+                    <div class="form-group">
+                        <label for="adj-description-input">Description *</label>
+                        <input type="text" id="adj-description-input" required placeholder="e.g., Overtime, Bonus, Late Penalty">
+                    </div>
+                    <div class="form-group">
+                        <label for="adj-amount-input">Amount *</label>
+                        <input type="number" id="adj-amount-input" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="adj-type-input">Type *</label>
+                        <select id="adj-type-input" required>
+                            <option value="">Select type</option>
+                            <option value="bonus">Bonus</option>
+                            <option value="overtime">Overtime</option>
+                            <option value="commission">Commission</option>
+                            <option value="deduction">Deduction</option>
+                            <option value="advance">Advance</option>
+                            <option value="penalty">Penalty</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="adj-frequency-input">Frequency *</label>
+                        <select id="adj-frequency-input" required>
+                            <option value="">Select frequency</option>
+                            <option value="one-time">One-Time (Auto-remove after receipt)</option>
+                            <option value="recurring">Recurring (Keep for future payments)</option>
+                        </select>
+                        <small class="form-help">One-time adjustments are automatically removed after generating a receipt</small>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('add-adjustment-modal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Add Adjustment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Settings Modal -->
+        <div id="settings-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Application Settings</h3>
+                    <button class="modal-close" onclick="closeModal('settings-modal')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <form id="settings-form" onsubmit="saveSettings(event)">
+                    <div class="form-group">
+                        <label for="currency-select">Currency</label>
+                        <select id="currency-select" required>
+                            <!-- Major Global Currencies -->
+                            <option value="USD">US Dollar ($)</option>
+                            <option value="EUR">Euro (€)</option>
+                            <option value="GBP">British Pound (£)</option>
+                            <option value="JPY">Japanese Yen (¥)</option>
+                            <option value="CNY">Chinese Yuan (¥)</option>
+                            <option value="INR">Indian Rupee (₹)</option>
+                            
+                            <!-- Americas -->
+                            <option value="CAD">Canadian Dollar (C$)</option>
+                            <option value="BRL">Brazilian Real (R$)</option>
+                            <option value="MXN">Mexican Peso ($)</option>
+                            <option value="ARS">Argentine Peso ($)</option>
+                            <option value="CLP">Chilean Peso ($)</option>
+                            <option value="COP">Colombian Peso ($)</option>
+                            <option value="PEN">Peruvian Sol (S/.)</option>
+                            <option value="UYU">Uruguayan Peso ($)</option>
+                            <option value="VES">Venezuelan Bolívar (Bs.)</option>
+                            <option value="BOB">Bolivian Boliviano (Bs.)</option>
+                            <option value="PAB">Panamanian Balboa (B/.)</option>
+                            <option value="GTQ">Guatemalan Quetzal (Q)</option>
+                            <option value="HNL">Honduran Lempira (L)</option>
+                            <option value="CRC">Costa Rican Colón (₡)</option>
+                            <option value="DOP">Dominican Peso (RD$)</option>
+                            <option value="JMD">Jamaican Dollar (J$)</option>
+                            
+                            <!-- Europe -->
+                            <option value="CHF">Swiss Franc (CHF)</option>
+                            <option value="SEK">Swedish Krona (kr)</option>
+                            <option value="NOK">Norwegian Krone (kr)</option>
+                            <option value="DKK">Danish Krone (kr)</option>
+                            <option value="PLN">Polish Zloty (zł)</option>
+                            <option value="CZK">Czech Koruna (Kč)</option>
+                            <option value="HUF">Hungarian Forint (Ft)</option>
+                            <option value="RON">Romanian Leu (lei)</option>
+                            <option value="BGN">Bulgarian Lev (лв)</option>
+                            <option value="HRK">Croatian Kuna (kn)</option>
+                            <option value="RSD">Serbian Dinar (дин.)</option>
+                            <option value="UAH">Ukrainian Hryvnia (₴)</option>
+                            <option value="BYN">Belarusian Ruble (Br)</option>
+                            <option value="ISK">Icelandic Króna (kr)</option>
+                            
+                            <!-- Asia-Pacific -->
+                            <option value="AUD">Australian Dollar (A$)</option>
+                            <option value="NZD">New Zealand Dollar (NZ$)</option>
+                            <option value="SGD">Singapore Dollar (S$)</option>
+                            <option value="HKD">Hong Kong Dollar (HK$)</option>
+                            <option value="KRW">South Korean Won (₩)</option>
+                            <option value="THB">Thai Baht (฿)</option>
+                            <option value="MYR">Malaysian Ringgit (RM)</option>
+                            <option value="PHP">Philippine Peso (₱)</option>
+                            <option value="IDR">Indonesian Rupiah (Rp)</option>
+                            <option value="VND">Vietnamese Dong (₫)</option>
+                            <option value="TWD">Taiwan Dollar (NT$)</option>
+                            <option value="BDT">Bangladeshi Taka (৳)</option>
+                            <option value="PKR">Pakistani Rupee (₨)</option>
+                            <option value="LKR">Sri Lankan Rupee (Rs)</option>
+                            <option value="NPR">Nepalese Rupee (₨)</option>
+                            <option value="MMK">Myanmar Kyat (K)</option>
+                            <option value="KHR">Cambodian Riel (៛)</option>
+                            <option value="LAK">Lao Kip (₭)</option>
+                            <option value="FJD">Fijian Dollar (FJ$)</option>
+                            
+                            <!-- Middle East & Africa -->
+                            <option value="TRY">Turkish Lira (₺)</option>
+                            <option value="ZAR">South African Rand (R)</option>
+                            <option value="AED">UAE Dirham (د.إ)</option>
+                            <option value="SAR">Saudi Riyal (ر.س)</option>
+                            <option value="QAR">Qatari Riyal (ر.ق)</option>
+                            <option value="KWD">Kuwaiti Dinar (د.ك)</option>
+                            <option value="BHD">Bahraini Dinar (ب.د)</option>
+                            <option value="OMR">Omani Rial (ر.ع.)</option>
+                            <option value="JOD">Jordanian Dinar (د.ا)</option>
+                            <option value="LBP">Lebanese Pound (ل.ل)</option>
+                            <option value="ILS">Israeli Shekel (₪)</option>
+                            <option value="IRR">Iranian Rial (﷼)</option>
+                            <option value="EGP">Egyptian Pound (ج.م)</option>
+                            <option value="MAD">Moroccan Dirham (د.م.)</option>
+                            <option value="TND">Tunisian Dinar (د.ت)</option>
+                            <option value="DZD">Algerian Dinar (د.ج)</option>
+                            <option value="LYD">Libyan Dinar (ل.د)</option>
+                            <option value="NGN">Nigerian Naira (₦)</option>
+                            <option value="GHS">Ghanaian Cedi (₵)</option>
+                            <option value="KES">Kenyan Shilling (KSh)</option>
+                            <option value="UGX">Ugandan Shilling (USh)</option>
+                            <option value="TZS">Tanzanian Shilling (TSh)</option>
+                            <option value="ETB">Ethiopian Birr (Br)</option>
+                            <option value="RWF">Rwandan Franc (FRw)</option>
+                            <option value="MWK">Malawian Kwacha (MK)</option>
+                            <option value="ZMW">Zambian Kwacha (ZK)</option>
+                            <option value="BWP">Botswana Pula (P)</option>
+                            <option value="NAD">Namibian Dollar (N$)</option>
+                            <option value="SZL">Swazi Lilangeni (E)</option>
+                            <option value="LSL">Lesotho Loti (L)</option>
+                            <option value="MGA">Malagasy Ariary (Ar)</option>
+                            <option value="MUR">Mauritian Rupee (₨)</option>
+                            <option value="SCR">Seychellois Rupee (₨)</option>
+                            
+                            <!-- Other Regions -->
+                            <option value="RUB">Russian Ruble (₽)</option>
+                            <option value="KZT">Kazakhstani Tenge (₸)</option>
+                            <option value="UZS">Uzbekistani Som (so'm)</option>
+                            <option value="KGS">Kyrgyzstani Som (с)</option>
+                            <option value="TJS">Tajikistani Somoni (ЅМ)</option>
+                            <option value="TMT">Turkmenistani Manat (m)</option>
+                            <option value="AFN">Afghan Afghani (؋)</option>
+                            <option value="AMD">Armenian Dram (֏)</option>
+                            <option value="AZN">Azerbaijani Manat (₼)</option>
+                            <option value="GEL">Georgian Lari (₾)</option>
+                            <option value="MDL">Moldovan Leu (L)</option>
+                            <option value="MNT">Mongolian Tugrik (₮)</option>
+                            
+                            <!-- Caribbean & Pacific -->
+                            <option value="XCD">East Caribbean Dollar (EC$)</option>
+                            <option value="BBD">Barbadian Dollar (Bds$)</option>
+                            <option value="BZD">Belize Dollar (BZ$)</option>
+                            <option value="BSD">Bahamian Dollar (B$)</option>
+                            <option value="KYD">Cayman Islands Dollar (CI$)</option>
+                            <option value="TTD">Trinidad and Tobago Dollar (TT$)</option>
+                            <option value="GYD">Guyanese Dollar (G$)</option>
+                            <option value="SRD">Surinamese Dollar (Sr$)</option>
+                            <option value="AWG">Aruban Florin (ƒ)</option>
+                            <option value="ANG">Netherlands Antillean Guilder (ƒ)</option>
+                            <option value="CUP">Cuban Peso ($)</option>
+                            <option value="HTG">Haitian Gourde (G)</option>
+                            
+                            <!-- Special & Crypto (for future) -->
+                            <option value="XAU">Gold Ounce (oz)</option>
+                            <option value="XAG">Silver Ounce (oz)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="company-name-input">Company Name</label>
+                        <input type="text" id="company-name-input" placeholder="PayMaster" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="date-format-select">Date Format</label>
+                        <select id="date-format-select">
+                            <option value="US">MM/DD/YYYY (US)</option>
+                            <option value="EU">DD/MM/YYYY (European)</option>
+                            <option value="ISO">YYYY-MM-DD (ISO)</option>
+                        </select>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" onclick="closeModal('settings-modal')">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Settings</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Restore Data Modal -->
+        <div id="restore-modal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Restore Data</h3>
+                    <button class="modal-close" onclick="closeModal('restore-modal')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="restore-content">
+                    <p><strong>Warning:</strong> Restoring data will replace all current data. Make sure to backup your current data first.</p>
+                    <div class="form-group">
+                        <label for="restore-file-input">Select Backup File</label>
+                        <input type="file" id="restore-file-input" accept=".json" onchange="handleRestoreFile(event)">
+                    </div>
+                    <div id="restore-preview" class="restore-preview" style="display: none;">
+                        <h4>Backup Contents:</h4>
+                        <ul id="restore-preview-list"></ul>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeModal('restore-modal')">Cancel</button>
+                    <button id="restore-confirm-btn" class="btn btn-danger" onclick="confirmRestore()" disabled>
+                        <i class="fas fa-upload"></i> Restore Data
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Receipt Modal -->
+        <div id="receipt-modal" class="modal">
+            <div class="modal-content receipt-modal-content">
+                <div class="modal-header">
+                    <h3>Payment Receipt</h3>
+                    <button class="modal-close" onclick="closeModal('receipt-modal')">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div id="receipt-content" class="receipt-content">
+                    <!-- Receipt will be generated here -->
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" onclick="closeModal('receipt-modal')">Close</button>
+                    <button class="btn btn-primary" onclick="printReceiptContent()">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

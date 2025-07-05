@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PayMaster - Professional Payroll Management Software | Simple, Fast, Secure</title>
+    <meta name="description" content="PayMaster is the #1 payroll management software for small businesses. Manage employees, process payments, and generate professional receipts in minutes. One-time purchase, no subscriptions.">
+    <meta name="keywords" content="payroll software, employee management, payment processing, small business, receipts, HR software">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paymaster.com/">
+    <meta property="og:title" content="PayMaster - Professional Payroll Management Software">
+    <meta property="og:description" content="Simple, fast, and secure payroll management for small businesses. One-time purchase, no subscriptions.">
+    <meta property="og:image" content="https://paymaster.com/assets/og-image.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://paymaster.com/">
+    <meta property="twitter:title" content="PayMaster - Professional Payroll Management Software">
+    <meta property="twitter:description" content="Simple, fast, and secure payroll management for small businesses. One-time purchase, no subscriptions.">
+    <meta property="twitter:image" content="https://paymaster.com/assets/og-image.png">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Analytics (replace with your tracking code) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=GA_TRACKING_ID"></script> -->
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-brand">
+                <img src="assets/logo.svg" alt="PayMaster" class="logo">
+                <span class="brand-text">PayMaster</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#pricing">Pricing</a>
+                <a href="#demo">Demo</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+                <button class="btn btn-primary" onclick="scrollToPricing()">
+                    <i class="fas fa-download"></i> Get PayMaster
+                </button>
+            </div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-badge">
+                        <i class="fas fa-star"></i>
+                        Trusted by 500+ Small Businesses
+                    </div>
+                    <h1 class="hero-title">
+                        The <span class="gradient-text">Simplest</span> Payroll Management Software for Small Businesses
+                    </h1>
+                    <p class="hero-subtitle">
+                        Stop wasting hours on payroll paperwork. PayMaster handles employee management, 
+                        payment calculations, and professional receipts in minutes, not hours.
+                    </p>
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>One-time purchase, no subscriptions</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Works offline, your data stays private</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Professional receipts in seconds</span>
+                        </div>
+                    </div>
+                    <div class="hero-cta">
+                        <button class="btn btn-primary btn-large" onclick="scrollToPricing()">
+                            <i class="fas fa-download"></i>
+                            Download PayMaster - $149
+                        </button>
+                        <button class="btn btn-secondary btn-large" onclick="watchDemo()">
+                            <i class="fas fa-play"></i>
+                            Watch Demo
+                        </button>
+                    </div>
+                    <div class="hero-guarantee">
+                        <i class="fas fa-shield-alt"></i>
+                        30-day money-back guarantee
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="assets/hero-screenshot.png" alt="PayMaster Dashboard" class="screenshot">
+                    <div class="floating-card card-1">
+                        <i class="fas fa-users"></i>
+                        <div>
+                            <div class="card-title">Employee Management</div>
+                            <div class="card-subtitle">Add, edit, manage employees</div>
+                        </div>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fas fa-receipt"></i>
+                        <div>
+                            <div class="card-title">Professional Receipts</div>
+                            <div class="card-subtitle">Generated in seconds</div>
+                        </div>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i class="fas fa-chart-line"></i>
+                        <div>
+                            <div class="card-title">Smart Analytics</div>
+                            <div class="card-subtitle">Track payroll insights</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <div class="section-header">
+                <h2>Are You Tired of Payroll Headaches?</h2>
+                <p>Most small business owners waste hours every month on payroll tasks that should take minutes</p>
+            </div>
+            <div class="problems-grid">
+                <div class="problem-item">
+                    <div class="problem-icon">😩</div>
+                    <h3>Manual Calculations</h3>
+                    <p>Spending hours calculating overtime, bonuses, and deductions manually</p>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">📄</div>
+                    <h3>Messy Paperwork</h3>
+                    <p>Creating receipts by hand or using complicated spreadsheets</p>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">💸</div>
+                    <h3>Payment Mistakes</h3>
+                    <p>Accidentally paying bonuses twice or missing deductions</p>
+                </div>
+                <div class="problem-item">
+                    <div class="problem-icon">🕐</div>
+                    <h3>Time Consuming</h3>
+                    <p>What should take 10 minutes takes 2+ hours every payday</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h2>PayMaster Solves All Your Payroll Problems</h2>
+                    <p>Transform your payroll process from hours of frustration to minutes of efficiency</p>
+                    
+                    <div class="solution-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h3>Automatic Calculations</h3>
+                                <p>Smart one-time vs recurring adjustments prevent double payments</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-file-invoice-dollar"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h3>Professional Receipts</h3>
+                                <p>Generate beautiful, branded receipts with one click</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h3>Data Security</h3>
+                                <p>Everything stored locally on your computer - no cloud required</p>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-item">
+                            <div class="benefit-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="benefit-content">
+                                <h3>Save 10+ Hours Monthly</h3>
+                                <p>Turn 2-hour payroll sessions into 10-minute tasks</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="solution-image">
+                    <img src="assets/solution-screenshot.png" alt="PayMaster Features" class="screenshot">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Everything You Need for Efficient Payroll Management</h2>
+                <p>PayMaster includes all the tools small businesses need to handle payroll professionally</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Employee Management</h3>
+                    <p>Add, edit, and manage unlimited employees with salary, insurance, and personal details</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Unlimited employee records</li>
+                        <li><i class="fas fa-check"></i> Salary and insurance tracking</li>
+                        <li><i class="fas fa-check"></i> Easy search and filtering</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-calculator"></i>
+                    </div>
+                    <h3>Smart Payment Processing</h3>
+                    <p>Automatic calculations with one-time and recurring adjustments to prevent payment errors</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Overtime and bonus calculations</li>
+                        <li><i class="fas fa-check"></i> Automatic deduction handling</li>
+                        <li><i class="fas fa-check"></i> One-time adjustment removal</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-receipt"></i>
+                    </div>
+                    <h3>Professional Receipts</h3>
+                    <p>Generate branded, printable receipts that look professional and build trust</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Custom company branding</li>
+                        <li><i class="fas fa-check"></i> Batch receipt generation</li>
+                        <li><i class="fas fa-check"></i> PDF-quality printing</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3>Reports & Analytics</h3>
+                    <p>Track payroll trends and generate detailed reports for better business insights</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Payroll summary reports</li>
+                        <li><i class="fas fa-check"></i> Employee analytics</li>
+                        <li><i class="fas fa-check"></i> Export to Excel/CSV</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Multi-Currency Support</h3>
+                    <p>Support for 120+ currencies worldwide, perfect for international businesses</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> 120+ global currencies</li>
+                        <li><i class="fas fa-check"></i> Automatic formatting</li>
+                        <li><i class="fas fa-check"></i> Regional date formats</li>
+                    </ul>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Data Security & Backup</h3>
+                    <p>Your data stays on your computer with built-in backup and restore capabilities</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Local data storage</li>
+                        <li><i class="fas fa-check"></i> One-click backup</li>
+                        <li><i class="fas fa-check"></i> GDPR compliant</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demo Section -->
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="demo-content">
+                <div class="demo-text">
+                    <h2>See PayMaster in Action</h2>
+                    <p>Watch how easy it is to manage your entire payroll process with PayMaster</p>
+                    <ul class="demo-points">
+                        <li><i class="fas fa-play-circle"></i> Add employees in 30 seconds</li>
+                        <li><i class="fas fa-play-circle"></i> Process payments with smart adjustments</li>
+                        <li><i class="fas fa-play-circle"></i> Generate professional receipts instantly</li>
+                        <li><i class="fas fa-play-circle"></i> Export data for accounting</li>
+                    </ul>
+                    <button class="btn btn-primary" onclick="watchDemo()">
+                        <i class="fas fa-play"></i> Watch Demo Video
+                    </button>
+                </div>
+                <div class="demo-video">
+                    <div class="video-placeholder" onclick="watchDemo()">
+                        <div class="play-button">
+                            <i class="fas fa-play"></i>
+                        </div>
+                        <img src="assets/demo-thumbnail.png" alt="PayMaster Demo">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Small Business Owners Say</h2>
+                <p>Join hundreds of satisfied customers who've simplified their payroll</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>
+                        "PayMaster cut our payroll time from 3 hours to 15 minutes. The one-time adjustments feature 
+                        saved us from paying overtime twice - that alone paid for the software!"
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <img src="assets/testimonial-1.jpg" alt="Sarah Johnson">
+                        <div>
+                            <div class="author-name">Sarah Johnson</div>
+                            <div class="author-title">Owner, Coastal Café</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>
+                        "Finally, a payroll software that's actually simple! No monthly fees, works offline, 
+                        and the receipts look so professional. Best $149 I've ever spent."
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <img src="assets/testimonial-2.jpg" alt="Mike Rodriguez">
+                        <div>
+                            <div class="author-name">Mike Rodriguez</div>
+                            <div class="author-title">Manager, Rodriguez Auto Repair</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <blockquote>
+                        "The analytics help me understand our labor costs better. PayMaster pays for itself 
+                        just by preventing calculation errors and saving time."
+                    </blockquote>
+                    <div class="testimonial-author">
+                        <img src="assets/testimonial-3.jpg" alt="Jennifer Kim">
+                        <div>
+                            <div class="author-name">Jennifer Kim</div>
+                            <div class="author-title">CEO, Kim's Cleaning Services</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2>Simple, Honest Pricing</h2>
+                <p>One payment, lifetime access. No hidden fees, no monthly subscriptions.</p>
+            </div>
+            
+            <div class="pricing-card">
+                <div class="pricing-badge">BEST VALUE</div>
+                <div class="pricing-header">
+                    <h3>PayMaster Professional</h3>
+                    <div class="price">
+                        <span class="currency">$</span>
+                        <span class="amount">149</span>
+                        <span class="period">one-time</span>
+                    </div>
+                    <p class="price-description">Complete payroll solution for small businesses</p>
+                </div>
+                
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Unlimited employees</li>
+                    <li><i class="fas fa-check"></i> Professional receipt generation</li>
+                    <li><i class="fas fa-check"></i> Smart one-time & recurring adjustments</li>
+                    <li><i class="fas fa-check"></i> Multi-currency support (120+ currencies)</li>
+                    <li><i class="fas fa-check"></i> Advanced reports & analytics</li>
+                    <li><i class="fas fa-check"></i> Data export (Excel, CSV, PDF)</li>
+                    <li><i class="fas fa-check"></i> Backup & restore functionality</li>
+                    <li><i class="fas fa-check"></i> Works offline - no internet required</li>
+                    <li><i class="fas fa-check"></i> Free updates for 1 year</li>
+                    <li><i class="fas fa-check"></i> Email support</li>
+                </ul>
+                
+                <div class="pricing-cta">
+                    <button class="btn btn-primary btn-large" onclick="purchaseNow()">
+                        <i class="fas fa-download"></i>
+                        Download PayMaster - $149
+                    </button>
+                    <div class="pricing-guarantee">
+                        <i class="fas fa-shield-alt"></i>
+                        30-day money-back guarantee
+                    </div>
+                </div>
+                
+                <div class="pricing-comparison">
+                    <h4>Compare to monthly subscriptions:</h4>
+                    <div class="comparison-item">
+                        <span>QuickBooks Payroll: $45/month = $540/year</span>
+                        <span class="savings">Save $391/year</span>
+                    </div>
+                    <div class="comparison-item">
+                        <span>Gusto: $39/month = $468/year</span>
+                        <span class="savings">Save $319/year</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2>Frequently Asked Questions</h2>
+                <p>Everything you need to know about PayMaster</p>
+            </div>
+            
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Is this really a one-time purchase?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Pay once ($149) and use PayMaster forever. No monthly fees, no hidden costs. You get free updates for the first year, and the software continues working even after that.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Does it work without internet?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Absolutely! PayMaster works completely offline. Your data is stored securely on your computer, not in the cloud. This means better privacy and no dependence on internet connectivity.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>How many employees can I manage?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Unlimited! Whether you have 2 employees or 200, PayMaster handles them all with the same performance and features.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>What if I need help or support?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We provide email support and a comprehensive user manual. Most users find PayMaster so intuitive they don't need help, but we're here when you do!</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Can I try before buying?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer a 30-day money-back guarantee. If PayMaster doesn't save you time and simplify your payroll, we'll refund your money, no questions asked.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFAQ(this)">
+                        <h3>Does it handle taxes automatically?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>PayMaster focuses on payment calculations and receipt generation. For tax calculations, we recommend consulting with your accountant or using specialized tax software alongside PayMaster.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="contact-content">
+                <div class="contact-text">
+                    <h2>Ready to Simplify Your Payroll?</h2>
+                    <p>Join hundreds of small business owners who've made payroll their easiest business task</p>
+                    
+                    <div class="contact-features">
+                        <div class="contact-feature">
+                            <i class="fas fa-download"></i>
+                            <div>
+                                <h3>Instant Download</h3>
+                                <p>Get PayMaster immediately after purchase</p>
+                            </div>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <div>
+                                <h3>Risk-Free</h3>
+                                <p>30-day money-back guarantee</p>
+                            </div>
+                        </div>
+                        <div class="contact-feature">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <h3>Support Included</h3>
+                                <p>Email support and user manual included</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-cta">
+                        <button class="btn btn-primary btn-large" onclick="purchaseNow()">
+                            <i class="fas fa-download"></i>
+                            Get PayMaster Now - $149
+                        </button>
+                        <p class="contact-guarantee">
+                            <i class="fas fa-lock"></i>
+                            Secure payment processing by Stripe
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="contact-info">
+                    <div class="contact-card">
+                        <h3>Have Questions?</h3>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <strong>Email Support</strong>
+                                <a href="mailto:support@paymaster.com">support@paymaster.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <strong>Response Time</strong>
+                                <span>Within 24 hours</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-file-alt"></i>
+                            <div>
+                                <strong>Documentation</strong>
+                                <a href="docs/User_Manual.pdf">User Manual</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/logo.svg" alt="PayMaster" class="logo">
+                    <span class="brand-text">PayMaster</span>
+                    <p>Simple, fast, professional payroll management for small businesses.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h4>Product</h4>
+                        <a href="#features">Features</a>
+                        <a href="#pricing">Pricing</a>
+                        <a href="#demo">Demo</a>
+                        <a href="docs/User_Manual.pdf">User Manual</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Support</h4>
+                        <a href="#faq">FAQ</a>
+                        <a href="mailto:support@paymaster.com">Contact Support</a>
+                        <a href="docs/LICENSE.md">License</a>
+                        <a href="#privacy">Privacy Policy</a>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h4>Company</h4>
+                        <a href="#about">About Us</a>
+                        <a href="#contact">Contact</a>
+                        <a href="#terms">Terms of Service</a>
+                        <a href="#refund">Refund Policy</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 PayMaster. All rights reserved.</p>
+                <div class="footer-social">
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+</body>
+</html>

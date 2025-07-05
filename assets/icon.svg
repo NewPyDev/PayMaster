@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background Circle -->
+  <circle cx="256" cy="256" r="240" fill="url(#gradient)" stroke="#ffffff" stroke-width="8"/>
+  
+  <!-- Money Symbol ($) -->
+  <g transform="translate(256,256)">
+    <!-- Dollar Sign -->
+    <path d="M-30,-80 Q-60,-80 -60,-50 Q-60,-20 -30,-20 L30,-20 Q60,-20 60,10 Q60,40 30,40 L-40,40" 
+          stroke="#ffffff" stroke-width="16" fill="none" stroke-linecap="round"/>
+    
+    <!-- Vertical lines for $ -->
+    <line x1="0" y1="-100" x2="0" y2="-80" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/>
+    <line x1="0" y1="40" x2="0" y2="60" stroke="#ffffff" stroke-width="16" stroke-linecap="round"/>
+    
+    <!-- Payroll Document -->
+    <rect x="-20" y="80" width="100" height="60" fill="#ffffff" rx="4"/>
+    <rect x="-20" y="80" width="100" height="20" fill="#667eea" rx="4"/>
+    
+    <!-- Document lines -->
+    <line x1="-10" y1="110" x2="70" y2="110" stroke="#667eea" stroke-width="2"/>
+    <line x1="-10" y1="120" x2="50" y2="120" stroke="#667eea" stroke-width="2"/>
+    <line x1="-10" y1="130" x2="60" y2="130" stroke="#667eea" stroke-width="2"/>
+  </g>
+  
+  <!-- Small decorative elements -->
+  <circle cx="120" cy="150" r="8" fill="#ffffff" opacity="0.3"/>
+  <circle cx="390" cy="180" r="6" fill="#ffffff" opacity="0.3"/>
+  <circle cx="140" cy="350" r="10" fill="#ffffff" opacity="0.3"/>
+  <circle cx="380" cy="320" r="7" fill="#ffffff" opacity="0.3"/>
+</svg>

@@ -1,0 +1,55 @@
+{
+  "name": "PayMaster",
+  "short_name": "PayMaster",
+  "description": "Professional Payroll Management System",
+  "version": "1.0.0",
+  "author": "PayMaster Team",
+  "license": "Commercial",
+  "homepage_url": "https://paymaster.com",
+  
+  "main": "index.html",
+  "display": "standalone",
+  "orientation": "landscape",
+  
+  "icons": [
+    {
+      "src": "assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  
+  "start_url": "./index.html",
+  "theme_color": "#667eea",
+  "background_color": "#f5f6fa",
+  
+  "categories": ["business", "finance", "productivity"],
+  "lang": "en",
+  
+  "permissions": [
+    "storage",
+    "fileSystem"
+  ],
+  
+  "features": [
+    "Employee Management",
+    "Payment Processing", 
+    "Receipt Generation",
+    "Reports & Analytics",
+    "Data Export",
+    "Multi-Currency Support",
+    "Insurance Management"
+  ],
+  
+  "system_requirements": {
+    "os": "Windows 10+",
+    "memory": "4GB RAM",
+    "storage": "100MB",
+    "display": "1024x768"
+  }
+}
